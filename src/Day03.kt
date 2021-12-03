@@ -22,10 +22,6 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        val bits = generateBitArr(input).map {
-            if (it >= 0) 1 else 0
-        }
-
         val oxygenGeneratorRating = convertBinaryStringToDecimalInt(filterInputByBit(input, false))
         val c02ScrubberRating = convertBinaryStringToDecimalInt(filterInputByBit(input, true))
         return oxygenGeneratorRating * c02ScrubberRating
