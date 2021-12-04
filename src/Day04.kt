@@ -25,8 +25,8 @@ fun main() {
             }
         }
 
-        fun calcScore(): Int {
-            return matrix.sumOf { row -> row.filter { it >= 0 }.sum() }
+        fun calcScore(draw: Int): Int {
+            return matrix.flatten().filterNot { it == -1 }.sum() * draw
         }
 
         override fun toString(): String {
@@ -54,9 +54,7 @@ fun main() {
         draws.forEach { draw ->
             boards.forEach { board ->
                 board.markValue(draw)
-                if (board.isBingo()) {
-                    return board.calcScore() * draw
-                }
+                if (board.isBingo()) return board.calcScore(draw)
             }
         }
         return -1
@@ -66,10 +64,9 @@ fun main() {
         val draws = input[0].split(",").map { it.toInt() }
         var boards = getBoardsFromInput(input)
         draws.forEach { draw ->
-            boards.forEach { board ->
-                board.markValue(draw)
-            }
-            if (boards.size == 1 && boards.first().isBingo()) return boards.first().calcScore() * draw
+            boards.forEach { it.markValue(draw) }
+            if (boards.size == 1 && boards.first().isBingo()) return boards.first().calcScore(draw)
+            // remove bingo'ed boards
             boards = boards.filterNot { it.isBingo() }.toMutableList()
         }
         return -1
