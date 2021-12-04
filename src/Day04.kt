@@ -2,7 +2,7 @@ fun main() {
 
     class Board(values: List<String>) {
         val matrix = values.map {
-            it.trim().split(" ").filterNot { i -> i == "" }.map { s -> s.toInt() }.toMutableList()
+            it.trim().split("""\s+""".toRegex()).map { s -> s.toInt() }.toMutableList()
         }.toMutableList()
 
         fun isBingo(): Boolean {
