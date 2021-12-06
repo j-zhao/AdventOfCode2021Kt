@@ -1,4 +1,4 @@
-import java.util.*
+import java.util.Collections
 
 fun main() {
     class SchoolOfLanternfish(fishes: List<Int>) {
