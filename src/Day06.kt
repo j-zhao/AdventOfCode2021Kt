@@ -1,5 +1,9 @@
 import java.util.Collections
 
+/*
+https://adventofcode.com/2021/day/6
+ */
+
 fun main() {
     class SchoolOfLanternfish(fishes: List<Int>) {
         var school = (0..8).map {0L}.toMutableList()
