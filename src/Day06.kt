@@ -4,27 +4,25 @@ fun main() {
 
         init {
             fishes.forEach {
-                school[it] = school[it]!! + 1
+                school[it] = school[it] + 1
             }
         }
 
-        fun initSchool(): MutableMap<Int, Long> {
-            return mutableMapOf<Int, Long>().apply {
-                for (i in 0..8) this[i] = 0
-            }
+        fun initSchool(): MutableList<Long> {
+            return (0..8).map {0L}.toMutableList()
         }
 
         fun countFish(): Long {
-            return school.values.sum()
+            return school.sum()
         }
 
         fun tick() {
             val schoolClone = initSchool()
-            school.forEach { (k, v) ->
-                if (k != 0) schoolClone[k - 1] = schoolClone[k - 1]!! + v
+            school.forEachIndexed { k, v ->
+                if (k != 0) schoolClone[k - 1] = schoolClone[k - 1] + v
             }
-            schoolClone[6] = schoolClone[6]!! + school[0]!!
-            schoolClone[8] = school[0]!!
+            schoolClone[6] = schoolClone[6] + school[0]
+            schoolClone[8] = school[0]
             school = schoolClone
         }
     }
