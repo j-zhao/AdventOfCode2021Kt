@@ -9,8 +9,7 @@ fun main() {
     )
 
     fun traverseCoordinates(input: String, map: MutableMap<Coordinate, Int>, includeDiagonals: Boolean) {
-        val matches = Regex("\\d+").findAll(input)
-        val numbers = matches.map { it.value.toInt() }.toList()
+        val numbers = Regex("\\d+").findAll(input).map { it.value.toInt() }.toList()
         val coordinates = numbers.windowed(2, 2).map { Coordinate(it[0], it[1]) }.sortedBy { it.x }
         val traversals = mutableListOf<Coordinate>()
         if (coordinates[0].x == coordinates[1].x) {
